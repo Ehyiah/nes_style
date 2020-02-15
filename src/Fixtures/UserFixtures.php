@@ -21,6 +21,8 @@ final class UserFixtures implements FixtureInterface
         $user = new User();
 
         $password = $this->encoder->encodePassword($user, 'coucou');
+        $user->setPassword($password);
+        $user->setUsername('Matthieu');
 
         $manager->persist($user);
         $manager->flush();

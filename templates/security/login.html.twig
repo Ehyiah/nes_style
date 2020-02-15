@@ -1,10 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
     <div class="container">
-        {{ form_start(form) }}
-        {{ form_row(form.username) }}
-        {{ form_end(form) }}
+        <div class="nes-container is-centered is-rounded">
+            <div class="nes-text is-primary">
+                <p>Connexion au Back-Office</p>
+            </div>
+
+            {{ form_start(form) }}
+            {{ form_rest(form) }}
+                <input type="submit" class="nes-btn is-success">
+            {{ form_end(form) }}
+
+        </div>
     </div>
 {% endblock %}
