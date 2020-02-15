@@ -39,24 +39,32 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function getSalt()
+    public function setPassword(?string $password): void
     {
-        // TODO: Implement getSalt() method.
+        $this->setPassword($password);
     }
 
-    public function getUsername(): string
+    public function getSalt()
+    {
+    }
+
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    public function setUsername(?string $username): void
+    {
+        $this->username = $username;
+    }
+
     public function eraseCredentials()
     {
-        // TODO: Implement eraseCredentials() method.
     }
 
     public function isAdmin(): bool
@@ -66,5 +74,20 @@ class User implements UserInterface
         }
 
         return false;
+    }
+
+    public function hasRole(string $role): bool
+    {
+        return in_array($role, $this->getRoles());
+    }
+
+    public function __toString(): string
+    {
+        return (string) $this->getUsername();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 }
