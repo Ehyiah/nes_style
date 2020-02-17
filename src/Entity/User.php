@@ -10,6 +10,9 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const ROLE_ADMIN = 'ROLE_ADMIN';
+    const ROLE_CONTRIB = 'ROLE_CONTRIB';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -46,7 +49,7 @@ class User implements UserInterface
 
     public function setPassword(?string $password): void
     {
-        $this->setPassword($password);
+        $this->password = $password;
     }
 
     public function getSalt()

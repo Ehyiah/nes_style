@@ -2,13 +2,14 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
@@ -26,43 +27,54 @@ final class Authenticator extends AbstractGuardAuthenticator implements Authenti
         $this->userPasswordEncoder = $userPasswordEncoder;
     }
 
-    public function start(Request $request, AuthenticationException $authException = null)
+    public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
         return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
-    public function supports(Request $request)
+    public function supports(Request $request): bool
     {
-        // TODO: Implement supports() method.
+        return $request->attributes->get('_route') === 'login' && $request->isMethod('POST');
     }
 
-    public function getCredentials(Request $request)
+    public function getCredentials(Request $request): array
     {
-        // TODO: Implement getCredentials() method.
+        return [
+            'username' => $request->request->get('login')['username'],
+            'password' => $request->request->get('login')['password']
+        ];
     }
 
-    public function getUser($credentials, UserProviderInterface $userProvider)
+    public function getUser($credentials, UserProviderInterface $userProvider): UserInterface
     {
-        // TODO: Implement getUser() method.
+        return $userProvider->loadUserByUsername($credentials['username']);
     }
 
     public function checkCredentials($credentials, UserInterface $user)
     {
-        // TODO: Implement checkCredentials() method.
+        if (!$user instanceof User || !($user->hasRole(User::ROLE_ADMIN) || $user->hasRole(User::ROLE_CONTRIB))) {
+            return false;
+        }
+
+        return $this->userPasswordEncoder->isPasswordValid($user, $credentials['password']);
     }
 
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
+    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): RedirectResponse
     {
-        // TODO: Implement onAuthenticationFailure() method.
+        if ($request->hasSession()) {
+            $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
+        }
+
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey)
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): RedirectResponse
     {
-        // TODO: Implement onAuthenticationSuccess() method.
+        return new RedirectResponse($this->urlGenerator->generate('easyadmin'));
     }
 
     public function supportsRememberMe()
     {
-        // TODO: Implement supportsRememberMe() method.
+        return false;
     }
 }

@@ -31,5 +31,4 @@ final class LoginController extends AbstractController
     {
         throw new \Exception();
     }
-
 }
