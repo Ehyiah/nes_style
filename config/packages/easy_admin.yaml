@@ -8,5 +8,24 @@ easy_admin:
             icon: 'user'
         Projects:
             class: App\Entity\Project
+            list:
+                fields:
+                    - title
+                    - description
+                    - link
+                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+            show:
+                fields:
+                    - title
+                    - description
+                    - link
+                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+            form:
+                fields:
+                    - title
+                    - description
+                    - link
+                    - updatedAt
+                    - { property: 'imageFile', type: 'vich_image' }
         Logo:
             class: App\Entity\Logo

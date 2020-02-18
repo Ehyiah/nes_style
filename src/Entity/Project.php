@@ -42,7 +42,7 @@ class Project
     private $image;
 
     /**
-     * @Vich\UploadableField(mapping="projects_images", fileNameProperty="image")
+     * @Vich\UploadableField(mapping="project_images", fileNameProperty="image")
      * @var File
      */
     private $imageFile;
