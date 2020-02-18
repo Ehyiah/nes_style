@@ -6,5 +6,7 @@ easy_admin:
         User:
             class: App\Entity\User
             icon: 'user'
-#        Projects:
-#            class: App\Entity\Projects
+        Projects:
+            class: App\Entity\Project
+        Logo:
+            class: App\Entity\Logo
