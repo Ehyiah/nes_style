@@ -9,10 +9,10 @@ Encore
     .setPublicPath('/build')
     // only needed for CDN's or sub-directory deploy
     //.setManifestKeyPrefix('build/')
-    // .copyFiles([
-    //     {from: './assets/img', to: 'img/[path][name].[ext]'},
-    //     {from: './node_modules/nes.css/', to: 'css/[path][name].[ext]', pattern: /\.(js|css)$/},
-    // ])
+    .copyFiles([
+        {from: './assets/img', to: 'img/[path][name].[ext]'},
+        {from: './node_modules/nes.css/', to: 'css/[path][name].[ext]', pattern: /\.(js|css)$/},
+    ])
 
     /*
      * Add 1 entry for each "page" of your app
