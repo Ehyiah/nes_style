@@ -6,6 +6,10 @@ easy_admin:
         User:
             class: App\Entity\User
             icon: 'user'
+            form:
+                fields:
+                    - username
+                    - roles
         Projects:
             class: App\Entity\Project
             list:

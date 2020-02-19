@@ -17,22 +17,22 @@ security:
             pattern: ^/(_(profiler|wdt)|css|img|js)/
             security: false
         main:
-            anonymous: true
+            pattern: ^/admin
             form_login:
                 login_path: login
                 check_path: login
                 csrf_token_generator: security.csrf.token_manager
             logout:
                 path: app_logout
+            anonymous: true
             guard:
                 authenticator:
                     - App\Security\Authenticator
-                provider: user_provider
+            provider: user_provider
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
 
     # Note: Only the *first* access control that matches will be used
     access_control:
-#         - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+         - { path: ^/admin, roles: ROLE_ADMIN }

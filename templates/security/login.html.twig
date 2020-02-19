@@ -8,7 +8,9 @@
             </div>
 
             {{ form_start(form) }}
-            {{ form_rest(form) }}
+            {{ form_row(form.username) }}
+            {{ form_row(form.password) }}
+            {{ form_errors(form) }}
                 <input type="submit" class="nes-btn is-success">
             {{ form_end(form) }}
 
