@@ -13,14 +13,14 @@ use Symfony\Component\Security\Core\Security;
 final class LoginController extends AbstractController
 {
     /**
-     * @Route("/login", name="login")
+     * @Route("/login", name="app_login")
      */
     public function login(Request $request): Response
     {
         $form = $this->createForm(LoginType::class)->handleRequest($request);
 
         if ($request->getSession()->has(Security::AUTHENTICATION_ERROR)) {
-            $form->addError(new FormError('form.login'));
+            $form->addError(new FormError(''));
             $request->getSession()->remove(Security::AUTHENTICATION_ERROR);
         }
 
