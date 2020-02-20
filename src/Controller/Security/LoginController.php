@@ -4,27 +4,23 @@ namespace App\Controller\Security;
 
 use App\Form\Security\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 final class LoginController extends AbstractController
 {
     /**
-     * @Route("/login", name="app_login")
+     * @Route("/login", name="login")
      */
-    public function login(Request $request): Response
+    public function login(Request $request, AuthenticationUtils $authenticationUtils): Response
     {
+        $error = $authenticationUtils->getLastAuthenticationError();
+
         $form = $this->createForm(LoginType::class)->handleRequest($request);
 
-        if ($request->getSession()->has(Security::AUTHENTICATION_ERROR)) {
-            $form->addError(new FormError(''));
-            $request->getSession()->remove(Security::AUTHENTICATION_ERROR);
-        }
-
-        return $this->render('security/login.html.twig', ['form' => $form->createView()]);
+        return $this->render('security/login.html.twig', ['form' => $form->createView(), 'error' => $error]);
     }
 
     /**

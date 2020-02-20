@@ -7,7 +7,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class AppFixtures extends Fixture
+final class UserFixtures extends Fixture
 {
     private $encoder;
 
@@ -22,10 +22,17 @@ class AppFixtures extends Fixture
 
         $password = $this->encoder->encodePassword($user, 'coucou');
         $user->setPassword($password);
-        $user->setUsername('Matthieu');
+        $user->setUsername('matthieu');
         $user->setRoles(['ROLE_ADMIN']);
-
         $manager->persist($user);
+
+        $user = new User();
+        $password = $this->encoder->encodePassword($user, 'coucou');
+        $user->setPassword($password);
+        $user->setRoles(['ROLE_CONTRIB']);
+        $user->setUsername('kristel');
+        $manager->persist($user);
+
         $manager->flush();
     }
 }

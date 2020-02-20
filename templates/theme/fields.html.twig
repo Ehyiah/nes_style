@@ -1,12 +1,12 @@
-{#{% block text_widget %}#}
-{#    <div class="nes-field">#}
-{#        {{ form_widget(form, {'attr': {'class': 'nes-input'} } ) }}#}
-{#    </div>#}
-{#{% endblock text_widget %}#}
+{% block text_widget %}
+    <div class="nes-field">
+        {{ form_widget(form, {'attr': {'class': 'nes-input'} } ) }}
+    </div>
+{% endblock text_widget %}
 
 
-{#{% block password_widget %}#}
-{#    <div class="nes-field">#}
-{#        {{ form_widget(form, {'attr': {'class': 'nes-input'} } ) }}#}
-{#    </div>#}
-{#{% endblock password_widget %}#}
+{% block password_widget %}
+    <div class="nes-field">
+        {{ form_widget(form, {'type': 'password', 'attr': {'class': 'nes-input'}} ) }}
+    </div>
+{% endblock password_widget %}

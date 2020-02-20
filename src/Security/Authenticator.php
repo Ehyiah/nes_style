@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Guard\AuthenticatorInterface;
 
-class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorInterface
+final class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorInterface
 {
     private $urlGenerator;
 
@@ -29,7 +29,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
 
     public function start(Request $request, AuthenticationException $authException = null): RedirectResponse
     {
-        return new RedirectResponse($this->urlGenerator->generate('app_login'));
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
     public function supports(Request $request): bool
@@ -65,7 +65,7 @@ class Authenticator extends AbstractGuardAuthenticator implements AuthenticatorI
             $request->getSession()->set(Security::AUTHENTICATION_ERROR, $exception);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('app_login'));
+        return new RedirectResponse($this->urlGenerator->generate('login'));
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $providerKey): RedirectResponse
