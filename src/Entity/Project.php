@@ -2,17 +2,19 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity
  * @Vich\Uploadable
  */
 class Project
 {
+    // TODO PAS DE SAVE A LA CREATION DE LOGOS
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="UUID")
@@ -31,12 +33,17 @@ class Project
     private $description;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", nullable=true)
      */
     private $link;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\OneToMany(targetEntity="Logo", mappedBy="project")
+     */
+    private $logos;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -48,12 +55,12 @@ class Project
     private $imageFile;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="datetime", nullable=true)
      * @var \DateTime
      */
     private $updatedAt;
 
-    public function setImageFile(File $image = null)
+    public function setImageFile(?File $image = null)
     {
         $this->imageFile = $image;
 
@@ -62,17 +69,17 @@ class Project
         }
     }
 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    public function setImage($image)
+    public function setImage(?string $image)
     {
         $this->image = $image;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
     }
@@ -125,5 +132,15 @@ class Project
     public function setUpdatedAt(?\DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getLogos(): ?Collection
+    {
+        return $this->logos;
+    }
+
+    public function setLogos(?Collection $logos): void
+    {
+        $this->logos = $logos;
     }
 }

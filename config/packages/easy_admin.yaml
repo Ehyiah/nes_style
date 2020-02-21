@@ -18,12 +18,14 @@ easy_admin:
                     - description
                     - link
                     - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+                    - { property: logos, type: collection }
             show:
                 fields:
                     - title
                     - description
                     - link
                     - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+                    - logos
             form:
                 fields:
                     - title
@@ -31,5 +33,21 @@ easy_admin:
                     - link
                     - updatedAt
                     - { property: 'imageFile', type: 'vich_image' }
+                    - logos
         Logo:
             class: App\Entity\Logo
+            list:
+                fields:
+                    - title
+                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+                    - updatedAt
+            show:
+                fields:
+                    - title
+                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
+                    - updatedAt
+            form:
+                fields:
+                    - title
+                    - { property: 'imageFile', type: 'vich_image' }
+                    - updatedAt
