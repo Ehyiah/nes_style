@@ -3,15 +3,14 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity()
  * @Vich\Uploadable
  */
-class Logo
+class Image
 {
     /**
      * @ORM\Id()
@@ -26,12 +25,7 @@ class Logo
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="logos", cascade={"persist"})
-     */
-    private $project;
-
-    /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @var string
      */
     private $image;
@@ -48,12 +42,7 @@ class Logo
      */
     private $updatedAt;
 
-    public function __toString()
-    {
-        return $this->title;
-    }
-
-    public function setImageFile(File $image = null)
+    public function setImageFile(?File $image = null)
     {
         $this->imageFile = $image;
 
@@ -62,29 +51,19 @@ class Logo
         }
     }
 
-    public function getImageFile()
+    public function getImageFile(): ?File
     {
         return $this->imageFile;
     }
 
-    public function setImage($image)
+    public function setImage(?string $image)
     {
         $this->image = $image;
     }
 
-    public function getImage()
+    public function getImage(): ?string
     {
         return $this->image;
-    }
-
-    public function getUpdatedAt(): ?\DateTime
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(?\DateTime $updatedAt): void
-    {
-        $this->updatedAt = $updatedAt;
     }
 
     public function getId(): ?int
@@ -107,13 +86,13 @@ class Logo
         $this->title = $title;
     }
 
-    public function getProject(): ?Project
+    public function getUpdatedAt(): ?\DateTime
     {
-        return $this->project;
+        return $this->updatedAt;
     }
 
-    public function setProject(?Project $project): void
+    public function setUpdatedAt(?\DateTime $updatedAt): void
     {
-        $this->project = $project;
+        $this->updatedAt = $updatedAt;
     }
 }

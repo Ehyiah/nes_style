@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
@@ -17,8 +18,8 @@ class Project
     // TODO PAS DE SAVE A LA CREATION DE LOGOS
     /**
      * @ORM\Id()
-     * @ORM\GeneratedValue(strategy="UUID")
-     * @ORM\Column(type="uuid")
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
      */
     private $id;
 
@@ -38,7 +39,7 @@ class Project
     private $link;
 
     /**
-     * @ORM\OneToMany(targetEntity="Logo", mappedBy="project")
+     * @ORM\OneToMany(targetEntity="App\Entity\Logo", mappedBy="project", cascade={"all"})
      */
     private $logos;
 
@@ -59,6 +60,11 @@ class Project
      * @var \DateTime
      */
     private $updatedAt;
+
+    public function __construct()
+    {
+        $this->logos = new ArrayCollection();
+    }
 
     public function setImageFile(?File $image = null)
     {
@@ -84,12 +90,12 @@ class Project
         return $this->image;
     }
 
-    public function getId(): ?Uuid
+    public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function setId(?Uuid $id): void
+    public function setId(?int $id): void
     {
         $this->id = $id;
     }
@@ -134,13 +140,29 @@ class Project
         $this->updatedAt = $updatedAt;
     }
 
+    /**
+     * @return Collection|Logo[]
+     */
     public function getLogos(): ?Collection
     {
         return $this->logos;
     }
 
-    public function setLogos(?Collection $logos): void
+    public function addLogo(Logo $logo): void
     {
-        $this->logos = $logos;
+        if (!$this->logos->contains($logo)) {
+            $this->logos->add($logo);
+            $logo->setProject($this);
+        }
+    }
+
+    public function removeLogo(Logo $logo): void
+    {
+        if ($this->logos->contains($logo)) {
+            $this->logos->remove($logo);
+            if ($logo->getProject() === $this) {
+                $logo->setProject(null);
+            }
+        }
     }
 }
