@@ -38,7 +38,7 @@ class Project
     private $link;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Logo", mappedBy="project", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="App\Entity\Logo", mappedBy="projects", cascade={"persist"})
      */
     private $logos;
 
@@ -151,7 +151,7 @@ class Project
     {
         if (!$this->logos->contains($logo)) {
             $this->logos->add($logo);
-            $logo->setProject($this);
+            $logo->addProject($this);
         }
     }
 
@@ -159,9 +159,7 @@ class Project
     {
         if ($this->logos->contains($logo)) {
             $this->logos->remove($logo);
-            if ($logo->getProject() === $this) {
-                $logo->setProject(null);
-            }
+            $logo->removeProject($this);
         }
     }
 }

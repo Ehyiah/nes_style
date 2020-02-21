@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\HttpFoundation\File\File;
@@ -26,9 +28,9 @@ class Logo
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="logos")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Project", inversedBy="logos")
      */
-    private $project;
+    private $projects;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -47,6 +49,11 @@ class Logo
      * @var \DateTime
      */
     private $updatedAt;
+
+    public function __construct()
+    {
+        $this->projects = new ArrayCollection();
+    }
 
     public function __toString()
     {
@@ -107,13 +114,24 @@ class Logo
         $this->title = $title;
     }
 
-    public function getProject(): ?Project
+    public function getProjects(): ?Collection
     {
-        return $this->project;
+        return $this->projects;
     }
 
-    public function setProject(?Project $project): void
+    public function addProject(?Project $project): void
     {
-        $this->project = $project;
+        if (!$this->projects->contains($project)) {
+            $this->projects->add($project);
+            $project->addLogo($this);
+        }
+    }
+
+    public function removeProject(?Project $project): void
+    {
+        if ($this->projects->contains($project)) {
+            $this->projects->remove($project);
+            $project->removeLogo($this);
+        }
     }
 }
