@@ -15,7 +15,6 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Project
 {
-    // TODO PAS DE SAVE A LA CREATION DE LOGOS
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -39,7 +38,7 @@ class Project
     private $link;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Logo", mappedBy="project", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="App\Entity\Logo", mappedBy="project", cascade={"persist"})
      */
     private $logos;
 

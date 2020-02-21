@@ -18,14 +18,7 @@ easy_admin:
                     - description
                     - link
                     - { property: 'image', type: 'file', base_path: '%app.path.project_images%' }
-                    - { property: 'logos', type: 'collection', type_options: {entry_type: 'App\Entity\Logo', by_reference: false } }
-            show:
-                fields:
-                    - title
-                    - description
-                    - link
-                    - { property: 'image', type: 'file', base_path: '%app.path.project_images%' }
-                    - logos
+                    - { property: 'logos', type: 'array' }
             form:
                 fields:
                     - title
@@ -33,15 +26,10 @@ easy_admin:
                     - link
                     - updatedAt
                     - { property: 'imageFile', type: 'vich_image' }
-                    - logos
+                    - { property: 'logos', type: 'entity', type_options: { class: 'App\Entity\Logo', by_reference: false } }
         Logo:
             class: App\Entity\Logo
             list:
-                fields:
-                    - title
-                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
-                    - updatedAt
-            show:
                 fields:
                     - title
                     - { property: image, type: 'file', base_path: '%app.path.project_images%' }
@@ -57,11 +45,6 @@ easy_admin:
                 fields:
                     - title
                     - { property: image, type: 'file', base_path: '%app.path.project_images%' }
-            show:
-                fields:
-                    - title
-                    - { property: image, type: 'file', base_path: '%app.path.project_images%' }
-                    - updatedAt
             form:
                 fields:
                     - title

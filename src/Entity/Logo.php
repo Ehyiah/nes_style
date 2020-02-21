@@ -26,7 +26,7 @@ class Logo
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="logos", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="App\Entity\Project", inversedBy="logos")
      */
     private $project;
 
