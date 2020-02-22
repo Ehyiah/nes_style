@@ -1,8 +1,18 @@
 <div id="contact-area">
+    <div class="background"></div>
     <div class="contact-tab nes-container is-rounded with-title">
+
+    <div id="close-contact" class="close-button nes-pointer">&times</div>
         <p class="title">Contactez-moi</p>
 
-        <div id="close-contact" class="close-button nes-pointer">&times</div>
+        {{ form_start(form) }}
+
+        {{ form_rest(form) }}
+
+        <div class="g-recaptcha" data-sitekey="{{ captcha }}"></div>
+        <button type="submit" class="nes-btn is-success">Envoyer</button>
+
+        {{ form_end(form) }}
 
     </div>
 </div>
