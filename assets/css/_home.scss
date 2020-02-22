@@ -1,4 +1,31 @@
 body {
-  font-family: "Press Start 2P", cursive;
-  //background-color: lightgray;
+    font-family: "Press Start 2P", cursive;
+    background-color: lightgray;
+
+    .margin-top {
+        margin-top: 20px;
+    }
+
+    i {
+        margin-right: -5px;
+        color: transparent;
+    }
+
+    .select-hover:hover{
+        font-weight: bold;
+        color: #ff2595;
+
+        cursor: pointer;
+    }
+
+    .select-hover:hover i {
+        color: black;
+        margin-right: 15px;
+        animation: blink 1s steps(2, end) infinite;
+        font-size: 25px;
+    }
+
+    .title {
+        background-color: lightgray !important;
+    }
 }

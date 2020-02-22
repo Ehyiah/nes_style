@@ -1,12 +1,16 @@
 @import "~font-awesome";
 @import "~normalize.css/normalize";
-@import "variable";
 
 @import "~nes.css/css/nes.css";
 //@import "~nes.css/css/nes-core.min.css";
 
+@import "variable";
 
+@import "menu";
 @import "header";
 @import "common";
 @import "home";
 @import "footer";
+@import "contact";
+@import "about";
+@import "skill";

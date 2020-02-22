@@ -3,8 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{% block title %}Matthieu Gostiaux{% endblock %}</title>
-        <link rel="icon" href="{{ 'build/img/favicon.jpg' }}">
+        <title>{% block title %}Login page{% endblock %}</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
         {% block stylesheets %}
@@ -12,15 +11,6 @@
         {% endblock stylesheets %}
     </head>
     <body>
-        <div class="container">
-            <div class="header-area">
-                <nav class="main-menu">
-                    <a class="menu-entry nes-text active">Coucou</a>
-                    <a class="menu-entry nes-text">Coucou</a>
-                </nav>
-            </div>
-        </div>
-
         {% block body %}{% endblock %}
 
         {% block javascripts %}

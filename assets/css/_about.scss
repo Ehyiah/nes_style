@@ -1,0 +1,16 @@
+#about-area {
+    display: none;
+
+    .close-button {
+        display: flex;
+        float: right;
+        font-size: 40px;
+        color: red;
+        animation: blink 1s steps(2, end) infinite;
+        //justify-self: center;
+    }
+
+    .about-tab {
+
+    }
+}

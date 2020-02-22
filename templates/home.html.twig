@@ -2,11 +2,24 @@
 
 {% block body %}
     <div class="container">
-        <h1>Coucou</h1>
+        <div id="main-area">
+            <div class="nes-container with-title is-centered">
+                <p class="title">Bienvenue</p>
 
+                <img class="img-fluid" src="{{ asset('build/img/head_8bit.jpg') }}" alt="8bit head">
+
+                <p class="nes-container margin-top">Matthieu Gostiaux, Développeur Back-end PHP/Symfony</p>
+            </div>
+
+            <div class="nes-container margin-top">
+                <p id="about-select" class="select-hover"><i class="fa fa-caret-right" aria-hidden="true"></i>A propos</p>
+                <p id="skill-select" class="select-hover"><i class="fa fa-caret-right" aria-hidden="true"></i>Projets / technologies</p>
+                <p id="contact-select" class="select-hover"><i class="fa fa-caret-right" aria-hidden="true"></i>Contactez-moi</p>
+            </div>
+        </div>
+
+        {{ include('_about.html.twig') }}
+        {{ include('_skills.html.twig') }}
+        {{ include('_contact.html.twig') }}
     </div>
 {% endblock body %}
-
-{% block javascripts %}
-
-{% endblock javascripts %}
