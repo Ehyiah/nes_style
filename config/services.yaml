@@ -7,9 +7,9 @@ services:
     _defaults:
         autowire: true
         autoconfigure: true
-    bind:
-        $google_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
-        $google_secret_key: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+        bind:
+            $google_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
+            $google_secret_key: '%env(GOOGLE_RECAPTCHA_SECRET)%'
 
     App\:
         resource: '../src/*'

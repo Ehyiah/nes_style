@@ -5,4 +5,4 @@ twig:
         - 'theme/fields.html.twig'
     globals:
         project_collection: '@App\Application\Templating\Helper\ProjectHelper'
-        captcha: '%env(GOOGLE_RECAPTCHA_SITE_KEY))%'
+        captcha: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
