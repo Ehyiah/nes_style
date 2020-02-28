@@ -1,4 +1,10 @@
 {
+    "deployer/deployer": {
+        "version": "v6.7.3"
+    },
+    "deployer/phar-update": {
+        "version": "v2.2.0"
+    },
     "google/recaptcha": {
         "version": "1.1",
         "recipe": {
@@ -8,10 +14,13 @@
             "ref": "d087df3e087f50da3955f2def05079380da5894b"
         },
         "files": [
-            "./config/packages/google_recaptcha.yaml"
+            "config/packages/google_recaptcha.yaml"
         ]
     },
     "php": {
-        "version": "7.4"
+        "version": "7.3"
+    },
+    "pimple/pimple": {
+        "version": "v3.2.3"
     }
 }
