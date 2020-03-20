@@ -1,8 +1,38 @@
 <div id="skill-area">
-    <div class="skill-tab nes-container is-rounded with-title">
+    <div id="close-skill" class="close-button nes-pointer">&times</div>
+
+    <div class="skill-tab nes-container is-rounded with-title text-center">
         <p class="title">Mes technologies</p>
 
-        <div id="close-skill" class="close-button nes-pointer">&times</div>
+        {% for logo in project_collection.logos %}
+            <img class="img-fluid" src="{{ vich_uploader_asset(logo) }}">
+        {% endfor %}
+    </div>
 
+    <div> &nbsp; </div>
+
+    <div class="skill-tab nes-container is-rounded with-title" id="projects">
+        <p class="title">Mes Projets</p>
+
+        {% for project in project_collection.projects %}
+            <h3 class="text-center project-title">{{ project.title }}</h3>
+            <div class="project-info">
+                <div class="images">
+                    <img class="img-fluid" src="{{ vich_uploader_asset(project) }}">
+                    <hr>
+                    <div>
+                        {% for logo in project.logos %}
+                            <img class="img-fluid logo" src="{{ vich_uploader_asset(logo) }}">
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="info">
+                    <p>{{ project.description }}</p>
+                    <a href="{{ project.link }}">Lien</a>
+                </div>
+            </div>
+            <hr>
+        {% endfor %}
     </div>
 </div>

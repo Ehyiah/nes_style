@@ -1,24 +1,36 @@
-//.visible-tablet {
-//    @include media($desktop) {
-//        display: none !important;
-//    }
+.visible-tablet {
+    @include breakpoint($desktop) {
+        display: none !important;
+    }
+}
+
+.visible-phone {
+    @include breakpoint($notMobile) {
+        display: none !important;
+    }
+}
+
+.hidden-tablet {
+    @include breakpoint($tablet) {
+        display: none !important;
+    }
+}
+
+.hidden-phone {
+    @include breakpoint($mobile) {
+        display: none !important;
+    }
+}
+
+body {
+  margin-top: 10px;
+}
+
+//.close-button {
+//    display: flex;
+//    float: right;
+//    font-size: 40px;
+//    color: red;
+//    animation: blink 1s steps(2, end) infinite;
+//    z-index: 99;
 //}
-//
-//.visible-phone {
-//    @include media($notMobile) {
-//        display: none !important;
-//    }
-//}
-//
-//.hidden-tablet {
-//    @include media($tablet) {
-//        display: none !important;
-//    }
-//}
-//
-//.hidden-phone {
-//    @include media($mobile) {
-//        display: none !important;
-//    }
-//}
-//

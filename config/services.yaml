@@ -1,7 +1,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app.path.project_images: /uploads/img/projects
+    app.path.project_images: /uploads/images
 
 services:
     _defaults:
@@ -10,6 +10,9 @@ services:
         bind:
             $google_site_key: '%env(GOOGLE_RECAPTCHA_SITE_KEY)%'
             $google_secret_key: '%env(GOOGLE_RECAPTCHA_SECRET)%'
+            $uploadDir: 'uploads/images'
+            $sendGrid: '%env(MAILER_PASSWORD)%'
+            $contactEmail: '%env(CONTACT_EMAIL)%'
 
     App\:
         resource: '../src/*'

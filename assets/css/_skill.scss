@@ -7,10 +7,43 @@
         font-size: 40px;
         color: red;
         animation: blink 1s steps(2, end) infinite;
-        //justify-self: center;
+        z-index: 99;
     }
 
     .skill-tab {
+        z-index: -1;
+    }
 
+    #projects {
+        z-index: 999;
+        img {
+            max-width: 100%;
+        }
+
+        .project-title {
+            text-decoration: underline;
+            margin-bottom: 15px;
+        }
+
+        .project-info {
+            display: flex;
+            justify-content: center;
+
+            .images {
+                display: grid;
+            }
+
+            .logo {
+                max-width: 50px;
+            }
+
+            .info {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    img {
+        max-width: 120px;
     }
 }

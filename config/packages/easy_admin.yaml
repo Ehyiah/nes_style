@@ -8,6 +8,7 @@ easy_admin:
             - Project
             - { entity: Logo, icon: 'file-image' }
             - { entity: Image, icon: 'images' }
+            - { entity: Description, icon: 'address-card' }
     entities:
         User:
             class: App\Entity\User
@@ -18,6 +19,8 @@ easy_admin:
                 fields:
                     - username
                     - roles
+        Description:
+            class: App\Entity\Description
         Project:
             class: App\Entity\Project
             list:

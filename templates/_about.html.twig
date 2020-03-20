@@ -4,10 +4,22 @@
     <div id="close-about" class="close-button nes-pointer">&times</div>
 
     <p class="title">A propos de moi</p>
+        {% for description in project_collection.descriptions %}
 
-        <p>Coucou c'est moi</p>
+            {% if project_collection.descriptions|length == 1 %}
+                <h2>{{ description.title }}</h2>
+                <hr>
+                <p>{{ description.about }}</p>
+            {% endif %}
 
-        <u>Encore moi ici aussi</u>
+            {% if project_collection.descriptions|length > 1 %}
+                <h2>{{ description.title }}</h2>
+                <hr>
+                <p>{{ description.about }}</p>
+
+                <h1 class="text-center">---</h1>
+            {% endif %}
+        {% endfor %}
     </div>
 
 </div>

@@ -4,6 +4,7 @@
         "bootstrap": "^4.4.1",
         "core-js": "^3.0.0",
         "node-sass": "^4.13.1",
+        "popper.js": "^1.15.0",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "7.0.1",
         "webpack-notifier": "^1.6.0"
@@ -17,7 +18,9 @@
         "build": "encore production --progress"
     },
     "dependencies": {
+        "breakpoint-sass": "^2.7.1",
         "font-awesome": "4.7.0",
+        "include-media": "^1.4.9",
         "jquery": "^3.4.1",
         "nes.css": "^2.3.0",
         "normalize.css": "^8.0.1",
