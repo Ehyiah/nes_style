@@ -14,11 +14,12 @@ set('shared_dirs', ['public/uploads']);
 set('git_tty', false);
 set('ssh_multiplexing', false);
 
-set('default_stage', 'dev');
+set('default_stage', 'prod');
+set('default_timeout', 1200);
 
 host('nesHost')
     ->hostname('cv.gostiaux.net')
-    ->stage('dev')
+    ->stage('prod')
     ->set('deploy_path', '/var/www/nes_style')
     ->user('deployer');
 
