@@ -43,11 +43,13 @@ easy_admin:
             list:
                 fields:
                     - title
+                    - social
                     - { property: image, type: 'file', base_path: '%app.path.project_images%' }
                     - updatedAt
             form:
                 fields:
                     - title
+                    - social
                     - { property: 'imageFile', type: 'vich_image' }
                     - updatedAt
         Image:

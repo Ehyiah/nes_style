@@ -49,6 +49,11 @@ class Logo
      */
     private $updatedAt;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $social;
+
     public function __construct()
     {
         $this->projects = new ArrayCollection();
@@ -111,6 +116,16 @@ class Logo
     public function setTitle(?string $title): void
     {
         $this->title = $title;
+    }
+
+    public function getSocial(): ?bool
+    {
+        return $this->social;
+    }
+
+    public function setSocial(?bool $social): void
+    {
+        $this->social = $social;
     }
 
     public function getProjects(): ?Collection

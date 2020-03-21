@@ -34,6 +34,15 @@ final class ProjectHelper extends TwigExtension
 
     public function logos(): array
     {
-        return $this->em->getRepository(Logo::class)->findAll();
+        return $this->em->getRepository(Logo::class)->findBy([
+            'social' => false
+        ]);
+    }
+
+    public function socialLogos(): array
+    {
+        return $this->em->getRepository(Logo::class)->findBy([
+            'social' => true
+        ]);
     }
 }
